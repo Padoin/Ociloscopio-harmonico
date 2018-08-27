@@ -1,0 +1,49 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit1H
+#define Unit1H
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <Vcl.Controls.hpp>
+#include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <IdBaseComponent.hpp>
+#include <IdThreadComponent.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <VCLTee.Chart.hpp>
+#include <VCLTee.Series.hpp>
+#include <VclTee.TeeGDIPlus.hpp>
+#include <VCLTee.TeEngine.hpp>
+#include <VCLTee.TeeProcs.hpp>
+//---------------------------------------------------------------------------
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+	TButton *Set;
+	TButton *StartStop;
+	TEdit *Edit1;
+	TLabel *Label1;
+	TLabel *Label2;
+	TChart *Chart1;
+	TEdit *Edit2;
+	TIdThreadComponent *Thread1;
+	TLineSeries *Series1;
+	TButton *Button1;
+	void __fastcall SetClick(TObject *Sender);
+	void __fastcall StartStopClick(TObject *Sender);
+	void __fastcall Thread1Run(TIdThreadComponent *Sender);
+	void __fastcall Button1Click(TObject *Sender);
+private:
+
+double vpontos;
+int amplitude;
+int frequencia;
+int i;
+	// User declarations
+public:		// User declarations
+	__fastcall TForm1(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//---------------------------------------------------------------------------
+#endif

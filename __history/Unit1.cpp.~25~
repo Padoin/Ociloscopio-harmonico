@@ -1,0 +1,69 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::SetClick(TObject *Sender)
+{
+	amplitude=Edit1->Text.ToInt();
+	frequencia=Edit2->Text.ToInt();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::StartStopClick(TObject *Sender)
+{
+	if(Thread1->Active)
+	{
+		Thread1->Active=false;
+
+	}
+	else
+	{
+		Thread1->Active=true;
+
+
+	}
+}
+
+
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Thread1Run(TIdThreadComponent *Sender)
+{
+	double pi=3.14;
+	double amostragem = frequencia * 10;
+	double aux = 2* pi *frequencia*(i/amostragem);
+	double terceira = 10*sin(aux*3);
+	double quinta = 15*sin(aux*5);
+	double setima =20*sin(aux*7);
+
+		vpontos= amplitude*sin(aux) + terceira +quinta + setima;
+
+
+
+	i++;
+
+	if(i>=512)
+	{
+		i=0;
+	}
+
+
+	Chart1->Series[0]->AddXY(i,vpontos);
+
+	Sleep(300);
+}
+//---------------------------------------------------------------------------
+
+
+
